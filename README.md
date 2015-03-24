@@ -70,7 +70,7 @@ The according Javadoc is available for download [here](https://rawgithub.com/pra
 Dependencies
 ------
 
-SWT Preferences depends on SWT (obviously) and tagsoup (for parsing HTML). The versions used to build the binaries provided on
+SWT Simple Browser depends on SWT (obviously) and tagsoup (for parsing HTML). The versions used to build the binaries provided on
 this page can be found [here](https://github.com/prasser/swtbrowser/tree/master/lib).
 
 Documentation
