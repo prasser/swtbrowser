@@ -8,14 +8,16 @@ IE on Windows, Firefox on Linux and Safari on Mac.
 So why yet another (highly limited) browser widget?
 
 While being as powerful as a modern browser should be, SWT's browser widget has two drawbacks. Firstly, it often loads quite
-slowly, because it needs to start a fully fledged modern browser. Secondly, I experienced quite a lot of problems on Linux
+slowly, because it needs to start a fully fledged web browser. Secondly, I experienced quite a lot of problems on Linux
 systems, where environment variables may need to be set up correctly or JVM parameters may need to be specified to enable SWT
 to successfully launch the default browser of the current desktop environment.
 
 Being in need of a quick solution to these problems and only wanting to display simple HTML pages, I looked around for alternative
 browser widgets for Java. There are quite a few solutions for the Swing toolkit, but using them was not an option, as it is not 
 possible to embed Swing or AWT components into SWT applications while delivering a good user experience. As a consequence, I 
-developed this browser widget, which is able to display simple HTML pages in SWT.
+developed this browser widget, which is able to display simple HTML pages in SWT application. The widget integrates seamlessly
+with the other components of a platform, by using the same styles, colors and fonts.
+
 
 Features
 ------
