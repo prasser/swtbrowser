@@ -79,4 +79,4 @@ Online documentation can be found [here](https://rawgithub.com/prasser/swtbrowse
 
 License
 ------
-EPL 1.0
+Apache 2.0
