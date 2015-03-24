@@ -131,22 +131,29 @@ public class HTMLBrowser {
         }
     }
 
+    /**
+     * Are we running on an OSX system
+     * @return
+     */
+    private static boolean isMac() {
+        return System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0;
+    }
     /** Caching and history*/
     private final List<String>      urls           = new ArrayList<String>();
     /** Caching and history*/
     private final List<String>      history        = new ArrayList<String>();
     /** Caching and history*/
     private final HTMLCache<Image>  cacheImage     = new HTMLCache<Image>();
+    
     /** Caching and history*/
     private final HTMLCache<String> cachePage      = new HTMLCache<String>();
-    
     /** View*/
     private final Composite         root;
     /** View*/
     private final ScrolledComposite scroller;
+    
     /** View*/
     private final HTMLStyle         htmlstyle;
-    
     /** Interaction and settings*/
     private List<LocationListener>  listeners      = new ArrayList<LocationListener>();
     /** Interaction and settings*/
@@ -157,6 +164,7 @@ public class HTMLBrowser {
     private int                     offset         = -1;
     /** Interaction and settings*/
     private int                     timeoutRead    = 3000;
+
     /** Interaction and settings*/
     private int                     timeoutConnect = 3000;
 
@@ -211,24 +219,6 @@ public class HTMLBrowser {
     }
 
     /**
-     * Returns the root layout
-     * @param scroller
-     * @return
-     */
-    private Layout getRootLayout(ScrolledComposite scroller) {
-    	int offset = scroller.getVerticalBar().getSize().x;
-    	offset = offset == 0 ? 30 : offset;
-        GridLayout layout = new GridLayout(1, false);
-        layout.marginWidth = 2;
-        layout.marginHeight = 2;
-        layout.marginTop = 2;
-        layout.marginBottom = 2;
-        layout.marginLeft = 2;
-        layout.marginRight = 2 + offset;
-        return layout;
-    }
-
-    /**
      * Adds a location listener
      * @param listener
      */
@@ -236,14 +226,6 @@ public class HTMLBrowser {
         listeners.add(listener);
     }
 
-    /**
-     * Are we running on an OSX system
-     * @return
-     */
-    private static boolean isMac() {
-        return System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0;
-    }
-    
     /**
      * Go backwards in the history
      * @throws HTMLException 
@@ -257,7 +239,7 @@ public class HTMLBrowser {
         this.render(this.urls.get(offset), this.history.get(offset));
         this.fireLocationEvent();
     }
-
+    
     /**
      * Go backwards in the history
      * @throws HTMLException 
@@ -280,6 +262,14 @@ public class HTMLBrowser {
     }
 
     /**
+     * Returns the widget's display
+     * @return
+     */
+    public Display getDisplay() {
+    	return root.getDisplay();
+    }
+
+    /**
      * Returns the current location, null, if there is no location or the content has been set directly
      * @return
      */
@@ -295,11 +285,11 @@ public class HTMLBrowser {
     }
     
     /**
-     * Returns the widget's display
+     * Returns the associated style
      * @return
      */
-    public Display getDisplay() {
-    	return root.getDisplay();
+    public HTMLStyle getStyle() {
+        return this.htmlstyle;
     }
     
     /**
@@ -399,6 +389,17 @@ public class HTMLBrowser {
         root.setRedraw(true);
     }
     
+    @SuppressWarnings("unused")
+    private int countElements(Control control) {
+        int count = 1;
+        if (control instanceof Composite) {
+            for (Control child : ((Composite)control).getChildren()) {
+                count += countElements(child);
+            }
+        }
+        return count;
+    }
+
     /**
      * Fire event
      */
@@ -408,6 +409,24 @@ public class HTMLBrowser {
         for (LocationListener listener : listeners) {
             listener.changed(event);
         }
+    }
+    
+    /**
+     * Returns the root layout
+     * @param scroller
+     * @return
+     */
+    private Layout getRootLayout(ScrolledComposite scroller) {
+    	int offset = scroller.getVerticalBar().getSize().x;
+    	offset = offset == 0 ? 30 : offset;
+        GridLayout layout = new GridLayout(1, false);
+        layout.marginWidth = 2;
+        layout.marginHeight = 2;
+        layout.marginTop = 2;
+        layout.marginBottom = 2;
+        layout.marginLeft = 2;
+        layout.marginRight = 2 + offset;
+        return layout;
     }
 
     /**
@@ -429,31 +448,12 @@ public class HTMLBrowser {
         scroller.redraw();
     }
     
-    @SuppressWarnings("unused")
-    private int countElements(Control control) {
-        int count = 1;
-        if (control instanceof Composite) {
-            for (Control child : ((Composite)control).getChildren()) {
-                count += countElements(child);
-            }
-        }
-        return count;
-    }
-
     /**
      * Resets the scroller
      */
     private void resetScroller() {
         scroller.setFocus();
         scroller.setOrigin(0, 0);
-    }
-    
-    /**
-     * Returns the associated style
-     * @return
-     */
-    public HTMLStyle getStyle() {
-        return this.htmlstyle;
     }
 
     /**
