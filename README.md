@@ -22,8 +22,8 @@ Features
 
 1. API is a subset of the API provided by `org.eclipse.swt.browser.Browser`
 2. The widget supports the following HTML tags
-	- Anchors: <a> (hyperlinks only)
-	- Paragraphs: <p>
+	- Anchors: `<a>` (hyperlinks only)
+	- Paragraphs: `<p>`
 	- Lists: <li>, <ol>, <ul> 
 	- Headings: <h1>, <h2>, <h3>, <h4>
 	- Images: <img>
