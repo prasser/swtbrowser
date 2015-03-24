@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/example"/>
+	<classpathentry kind="src" path="src/main"/>
+	<classpathentry kind="lib" path="lib/swt/swt-4.2.1-gtk-linux-x86_64.jar"/>
+	<classpathentry kind="lib" path="lib/tagsoup/tagsoup-1.2.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
