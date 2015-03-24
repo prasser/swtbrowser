@@ -22,13 +22,13 @@ Features
 
 1. API is a subset of the API provided by `org.eclipse.swt.browser.Browser`
 2. The widget supports the following HTML tags
-- Anchors: <a> (hyperlinks only)
-- Paragraphs: <p>
-- Lists: <li>, <ol>, <ul> 
-- Headings: <h1>, <h2>, <h3>, <h4>
-- Images: <img>
-- Linebreaks: <br>
-- Text styles: <i>, <u>, <del>, <em>, <strong>, <strike>
+	- Anchors: <a> (hyperlinks only)
+	- Paragraphs: <p>
+	- Lists: <li>, <ol>, <ul> 
+	- Headings: <h1>, <h2>, <h3>, <h4>
+	- Images: <img>
+	- Linebreaks: <br>
+	- Text styles: <i>, <u>, <del>, <em>, <strong>, <strike>
 3. Asynchronous loading of HTML documents and images
 4. Caching of HTML documents and images
 5. Supports HTTPS
