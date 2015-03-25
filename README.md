@@ -15,7 +15,7 @@ to successfully launch the default browser of the current desktop environment.
 Being in need of a quick solution to these problems and only wanting to display simple HTML pages, I looked around for alternative
 browser widgets for Java. There are quite a few solutions for the Swing toolkit, but using them was not an option, as it is not 
 possible to embed Swing or AWT components into SWT applications while delivering a good user experience. As a consequence, I 
-developed this browser widget, which is able to display simple HTML pages in SWT application. The widget integrates seamlessly
+developed this browser widget, which is able to display simple HTML pages in SWT applications. The widget integrates seamlessly
 with the other components of a platform, by using the same styles, colors and fonts.
 
 
@@ -23,7 +23,7 @@ Features
 ------
 
 1. API is a subset of the API provided by `org.eclipse.swt.browser.Browser`
-2. The widget supports the following HTML tags
+2. Supports the following HTML tags
 	- Anchors: `<a>` (hyperlinks only)
 	- Paragraphs: `<p>`
 	- Lists: `<li>`, `<ol>`, `<ul>` 
