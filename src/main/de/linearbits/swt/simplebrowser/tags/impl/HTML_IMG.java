@@ -17,6 +17,9 @@ import java.net.URL;
 import java.util.Map;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -38,7 +41,7 @@ public class HTML_IMG extends HTMLContainer{
      * Background loader for images
      * @author Fabian Prasser
      */
-    private static class ImageLoader implements Runnable {
+    private class ImageLoader implements Runnable {
 
         /** Browser*/
         private final HTMLBrowser      browser;
@@ -99,18 +102,22 @@ public class HTML_IMG extends HTMLContainer{
                             image.dispose();
                             return;
                         }
-                        
-                        // Site
-                        if (!sized) {
-                            setSize(label, image.getBounds().width, image.getBounds().height);
-                            browser.layout();
-                        }
-                        
+
                         // Update
                         label.setRedraw(false);
                         label.setBackground(style.getBackground());
                         label.setForeground(style.getForeground());
-                        label.setImage(image);
+                        
+                        // Size
+                        if (!sized) {
+                            setSize(label, image.getBounds().width, image.getBounds().height);
+                            label.setImage(image);
+                            browser.layout();
+                        } else {
+                            label.setImage(getImage(label, image));
+                        }
+                        
+                        // Update
                         label.setRedraw(true);
                     }
                 });
@@ -194,9 +201,11 @@ public class HTML_IMG extends HTMLContainer{
                 // Set from cache
                 Image img = cache.get(url);
                 if (img != null && !img.isDisposed()) {
-                    label.setImage(img);
                     if (!sized) {
                         setSize(label, img.getBounds().width, img.getBounds().height);
+                        label.setImage(img);
+                    } else {
+                        label.setImage(getImage(label, img));
                     }
                     
                 // Load from cache
@@ -209,6 +218,49 @@ public class HTML_IMG extends HTMLContainer{
         }
         
         return result;
+    }
+
+    /**
+     * Returns a resized image and reigsters a dispose listener
+     * @param label
+     * @param image
+     * @return
+     */
+    private Image getImage(Label label, Image image) {
+        GridData data = (GridData)label.getLayoutData();
+        int width = data.minimumWidth;
+        int height = data.minimumHeight;
+        if (width != image.getBounds().width || height != image.getBounds().height) {
+            final Image resized = getResizedInstance(image, width, height);
+            label.addDisposeListener(new DisposeListener(){
+                @Override
+                public void widgetDisposed(DisposeEvent arg0) {
+                    if (resized != null && !resized.isDisposed()) {
+                        resized.dispose();
+                    }
+                }
+            });
+            return resized;
+        } else {
+            return image;
+        }
+    }
+
+    /**
+     * Resizes the given image. Does not dispose the input image.
+     * @param image
+     * @param width
+     * @param height
+     * @return
+     */
+    private Image getResizedInstance(Image image, int width, int height) {
+        Image scaled = new Image(browser.getDisplay(), width, height);
+        GC gc = new GC(scaled);
+        gc.setAntialias(SWT.ON);
+        gc.setInterpolation(SWT.HIGH);
+        gc.drawImage(image, 0, 0, image.getBounds().width, image.getBounds().height, 0, 0, width, height);
+        gc.dispose();
+        return scaled;
     }
 
     @Override
