@@ -221,7 +221,7 @@ public class HTML_IMG extends HTMLContainer{
     }
 
     /**
-     * Returns a resized image and reigsters a dispose listener
+     * Returns a resized image and registers a dispose listener if required
      * @param label
      * @param image
      * @return
