@@ -29,13 +29,17 @@ public class HTMLStyle {
     /** Foreground*/
     private Color foreground = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_FOREGROUND);
     /** Increase of size for h1*/
-    private int offsetH1 = 4;
+    private int offsetH1 = 6;
     /** Increase of size for h2*/
-    private int offsetH2 = 3;
+    private int offsetH2 = 5;
     /** Increase of size for h3*/
-    private int offsetH3 = 2;
+    private int offsetH3 = 4;
     /** Increase of size for h4*/
-    private int offsetH4 = 1;
+    private int offsetH4 = 3;
+    /** Increase of size for h5*/
+    private int offsetH5 = 2;
+    /** Increase of size for h6*/
+    private int offsetH6 = 1;
     
     /**
      * Creates a new style
@@ -104,6 +108,22 @@ public class HTMLStyle {
     }
 
     /**
+     * Increase in size of h5
+     * @return
+     */
+    public int getOffsetH5() {
+        return offsetH5;
+    }
+
+    /**
+     * Increase in size of h6
+     * @return
+     */
+    public int getOffsetH6() {
+        return offsetH6;
+    }
+
+    /**
      * Background
      * @param color
      */
@@ -160,6 +180,22 @@ public class HTMLStyle {
      */
     public void setOffsetH4(int offsetH4) {
         this.offsetH4 = offsetH4;
+    }
+
+    /**
+     * Increase in size of h5
+     * @param offsetH5
+     */
+    public void setOffsetH5(int offsetH5) {
+        this.offsetH5 = offsetH5;
+    }
+    
+    /**
+     * Increase in size of h6
+     * @param offsetH6
+     */
+    public void setOffsetH6(int offsetH6) {
+        this.offsetH6 = offsetH6;
     }
     
     /**

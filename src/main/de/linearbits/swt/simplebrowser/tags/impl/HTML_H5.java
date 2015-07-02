@@ -15,24 +15,24 @@ import de.linearbits.swt.simplebrowser.HTMLStyle;
 import de.linearbits.swt.simplebrowser.tags.HTMLElement;
 
 /**
- * Heading 3
+ * Heading 4
  * @author Fabian Prasser
  */
-public class HTML_H3 extends HTML_H{
+public class HTML_H5 extends HTML_H{
 
     /**
      * Constructor
      */
-    public HTML_H3() {
-        super("h3");
+    public HTML_H5() {
+        super("h5");
     }
 
     @Override
     public HTMLElement newInstance() {
-        return new HTML_H3();
+        return new HTML_H5();
     }
 
     protected int getOffset(HTMLStyle style) {
-        return style.getOffsetH3();
+        return style.getOffsetH5();
     }
 }

@@ -24,7 +24,7 @@ public class HTML_H4 extends HTML_H{
      * Constructor
      */
     public HTML_H4() {
-        super("h3");
+        super("h4");
     }
 
     @Override
@@ -33,6 +33,6 @@ public class HTML_H4 extends HTML_H{
     }
 
     protected int getOffset(HTMLStyle style) {
-        return style.getOffsetH3();
+        return style.getOffsetH4();
     }
 }
