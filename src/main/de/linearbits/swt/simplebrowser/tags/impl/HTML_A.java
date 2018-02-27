@@ -20,8 +20,10 @@ import java.util.Stack;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
@@ -121,9 +123,13 @@ public class HTML_A extends HTMLStyleElement {
             applyStyle(container, style);
             
             for (String href : _hrefs) {
-                Label lbl = new Label(container, SWT.NONE);
-                lbl.setText("Link: " + href);
-                applyStyle(lbl, style);
+                StyledText text = new StyledText(container, SWT.MULTI | SWT.READ_ONLY | SWT.WRAP);
+                text.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ));
+                text.setText("Link: " + href);
+                text.setBackground(style.getBackground());
+                text.setForeground(style.getForeground());
+                text.setFont(style.getFont());
+                applyStyle(text, style);
             }
 
         // Button
@@ -136,7 +142,6 @@ public class HTML_A extends HTMLStyleElement {
             container.setLayout(layout);
             container.setLayoutData(getDefaultLayoutData());
             applyStyle(container, style);
-            
             
             Label lbl = new Label(container, SWT.NONE);
             lbl.setText("Link:");
