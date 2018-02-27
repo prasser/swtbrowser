@@ -13,3 +13,4 @@ hs_err_pid*
 /.git
 /.classpath
 /.project
+/.settings

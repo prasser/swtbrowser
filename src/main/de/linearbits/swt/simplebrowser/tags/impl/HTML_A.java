@@ -110,8 +110,24 @@ public class HTML_A extends HTMLStyleElement {
             return;
         }
 
+        // Text
+        if (!style.isClickableLinks()) {
+            
+            Composite container = new Composite(parent, SWT.NONE);
+            GridLayout layout = getDefaultLayout();
+            layout.numColumns = 1;
+            container.setLayout(layout);
+            container.setLayoutData(getDefaultLayoutData());
+            applyStyle(container, style);
+            
+            for (String href : _hrefs) {
+                Label lbl = new Label(container, SWT.NONE);
+                lbl.setText("Link: " + href);
+                applyStyle(lbl, style);
+            }
+
         // Button
-        if (_hrefs.size() == 1) {
+        } else if (_hrefs.size() == 1) {
             
             Composite container = new Composite(parent, SWT.NONE);
             GridLayout layout = getDefaultLayout();

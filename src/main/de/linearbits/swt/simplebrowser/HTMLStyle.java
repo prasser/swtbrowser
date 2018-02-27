@@ -22,24 +22,26 @@ import org.eclipse.swt.widgets.Display;
  */
 public class HTMLStyle {
 
-    /** Background*/
-    private Color background = Display.getDefault().getSystemColor(SWT.COLOR_WHITE);
-    /** Font*/
-    private Font font = Display.getDefault().getSystemFont();
-    /** Foreground*/
-    private Color foreground = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_FOREGROUND);
-    /** Increase of size for h1*/
-    private int offsetH1 = 6;
-    /** Increase of size for h2*/
-    private int offsetH2 = 5;
-    /** Increase of size for h3*/
-    private int offsetH3 = 4;
-    /** Increase of size for h4*/
-    private int offsetH4 = 3;
-    /** Increase of size for h5*/
-    private int offsetH5 = 2;
-    /** Increase of size for h6*/
-    private int offsetH6 = 1;
+    /** Background */
+    private Color   background     = Display.getDefault().getSystemColor(SWT.COLOR_WHITE);
+    /** Font */
+    private Font    font           = Display.getDefault().getSystemFont();
+    /** Foreground */
+    private Color   foreground     = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_FOREGROUND);
+    /** Increase of size for h1 */
+    private int     offsetH1       = 6;
+    /** Increase of size for h2 */
+    private int     offsetH2       = 5;
+    /** Increase of size for h3 */
+    private int     offsetH3       = 4;
+    /** Increase of size for h4 */
+    private int     offsetH4       = 3;
+    /** Increase of size for h5 */
+    private int     offsetH5       = 2;
+    /** Increase of size for h6 */
+    private int     offsetH6       = 1;
+    /** Clickable links */
+    private boolean clickableLinks = true;
     
     /**
      * Creates a new style
@@ -124,12 +126,26 @@ public class HTMLStyle {
     }
 
     /**
+     * @return the clickableLinks
+     */
+    public boolean isClickableLinks() {
+        return clickableLinks;
+    }
+    
+    /**
      * Background
      * @param color
      */
     public void setBackground(Color color) {
         checkNull(color);
         this.background = color;
+    }
+    
+    /**
+     * @param clickableLinks the clickableLinks to set
+     */
+    public void setClickableLinks(boolean clickableLinks) {
+        this.clickableLinks = clickableLinks;
     }
     
     /**
@@ -165,7 +181,7 @@ public class HTMLStyle {
     public void setOffsetH2(int offsetH2) {
         this.offsetH2 = offsetH2;
     }
-    
+
     /**
      * Increase in size of h3
      * @param offsetH3
@@ -181,7 +197,7 @@ public class HTMLStyle {
     public void setOffsetH4(int offsetH4) {
         this.offsetH4 = offsetH4;
     }
-
+    
     /**
      * Increase in size of h5
      * @param offsetH5
@@ -189,7 +205,7 @@ public class HTMLStyle {
     public void setOffsetH5(int offsetH5) {
         this.offsetH5 = offsetH5;
     }
-    
+
     /**
      * Increase in size of h6
      * @param offsetH6
@@ -197,7 +213,7 @@ public class HTMLStyle {
     public void setOffsetH6(int offsetH6) {
         this.offsetH6 = offsetH6;
     }
-    
+
     /**
      * Internal stuff
      * @param object
